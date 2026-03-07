@@ -17,8 +17,21 @@ fs.rmSync(outputDirectory, {
   force: true,
 });
 
-// Create a temporary script to build extensions
-const buildScript = `
+// Run patch script first
+const patchScriptPath = pathUtil.join(__dirname, 'patch-turbowarp-extensions.mjs');
+const patchProcess = spawn('node', [patchScriptPath], {
+  stdio: 'inherit',
+  shell: false
+});
+
+patchProcess.on('exit', (patchCode) => {
+  if (patchCode !== 0) {
+    console.error('Patch failed with exit code:', patchCode);
+    process.exit(patchCode);
+  }
+  
+  // Create a temporary script to build extensions
+  const buildScript = `
 import pathUtil from 'node:path';
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
@@ -33,7 +46,6 @@ console.log('Built extensions (mode: ' + mode + ')');
 
 const outputDirectory = process.argv[2];
 
-// Use brotli compression instead of zstd
 const brotliCompress = promisify(zlib.brotliCompress);
 
 const exportFile = async (relativePath, file) => {
@@ -63,30 +75,36 @@ Promise.all(promises)
   });
 `;
 
-const buildScriptPath = pathUtil.join(__dirname, '_build-extensions-temp.mjs');
-fs.writeFileSync(buildScriptPath, buildScript, 'utf-8');
+  const buildScriptPath = pathUtil.join(__dirname, '_build-extensions-temp.mjs');
+  fs.writeFileSync(buildScriptPath, buildScript, 'utf-8');
 
-// Run build script in a subprocess
-const child = spawn('node', [buildScriptPath, outputDirectory], {
-  stdio: 'inherit',
-  shell: false
+  // Run build script in a subprocess
+  const buildProcess = spawn('node', [buildScriptPath, outputDirectory], {
+    stdio: 'inherit',
+    shell: false
+  });
+
+  buildProcess.on('exit', (buildCode) => {
+    // Clean up temporary script
+    try {
+      fs.unlinkSync(buildScriptPath);
+    } catch (e) {
+      // Ignore cleanup errors
+    }
+    
+    if (buildCode !== 0) {
+      console.error('Build failed with exit code:', buildCode);
+      process.exit(buildCode);
+    }
+  });
+
+  buildProcess.on('error', (err) => {
+    console.error('Failed to start build process:', err);
+    process.exit(1);
+  });
 });
 
-child.on('exit', (code) => {
-  // Clean up temporary script
-  try {
-    fs.unlinkSync(buildScriptPath);
-  } catch (e) {
-    // Ignore cleanup errors
-  }
-  
-  if (code !== 0) {
-    console.error('Build failed with exit code:', code);
-    process.exit(code);
-  }
-});
-
-child.on('error', (err) => {
-  console.error('Failed to start build process:', err);
+patchProcess.on('error', (err) => {
+  console.error('Failed to start patch process:', err);
   process.exit(1);
 });
