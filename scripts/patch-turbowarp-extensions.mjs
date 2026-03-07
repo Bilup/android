@@ -11,10 +11,11 @@ const dependencyManagementPath = pathUtil.join(extensionsDir, 'development/depen
 if (fs.existsSync(dependencyManagementPath)) {
   let content = fs.readFileSync(dependencyManagementPath, 'utf-8');
   
-  // Replace zstdCompressSync with brotliCompressSync
+  // Replace zstdCompressSync with brotliCompressSync, removing the level parameter
+  // zstdCompressSync(data, level) -> brotliCompressSync(data)
   content = content.replace(
-    /zlib\.zstdCompressSync/g,
-    'zlib.brotliCompressSync'
+    /zlib\.zstdCompressSync\(([^,]+),\s*[^)]+\)/g,
+    'zlib.brotliCompressSync($1)'
   );
   
   // Replace zstdDecompressSync with brotliDecompressSync
