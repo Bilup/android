@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Import EditorPreload Capacitor implementation before other modules
+import './editor-preload-capacitor.js';
+
 import GUI from './gui.jsx';
 
 import './media-device-chooser-impl.js';
