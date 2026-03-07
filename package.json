@@ -50,7 +50,7 @@
     "scratch-gui": "git+https://github.com/Bilup/scratch-gui#develop",
     "style-loader": "^0.23.0",
     "url-loader": "^4.1.1",
-    "webpack": "4.47.0",
+    "webpack": "5.105.4",
     "webpack-cli": "^4.10.0"
   },
   "overrides": {
