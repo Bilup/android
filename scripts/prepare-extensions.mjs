@@ -33,6 +33,7 @@ console.log('Built extensions (mode: ' + mode + ')');
 
 const outputDirectory = process.argv[2];
 
+// Use brotli compression instead of zstd
 const brotliCompress = promisify(zlib.brotliCompress);
 
 const exportFile = async (relativePath, file) => {
@@ -65,7 +66,7 @@ Promise.all(promises)
 const buildScriptPath = pathUtil.join(__dirname, '_build-extensions-temp.mjs');
 fs.writeFileSync(buildScriptPath, buildScript, 'utf-8');
 
-// Run the build script in a subprocess
+// Run build script in a subprocess
 const child = spawn('node', [buildScriptPath, outputDirectory], {
   stdio: 'inherit',
   shell: false
