@@ -1,0 +1,14 @@
+# Description of the desktop app in the Microsoft Store.
+microsoft-store-description: |
+  Bilup Desktop is a mod of TurboWarp (MistWarp) with live collaboration, total Chinese translations, and more.
+
+  The developers of Bilup have no affiliation with the Scratch Team. This is a community-developed mod.
+
+# Release notes of the desktop app in the Microsoft Store. For languages other than English we don't publish full release notes in the store.
+microsoft-store-generic-release-notes: "For the latest release notes, visit {changelog_link}"
+
+# Caption of the addon settings page screenshot for the desktop app in the Microsoft Store.
+microsoft-store-screenshot-addons: "More than {number_of_addons} addons to customize and enhance your experience."
+
+# Caption of the package screenshot for the desktop app in the Microsoft Store.
+microsoft-store-screenshot-packager: "Builtin packager to convert projects to HTML files or applications for Windows, macOS, or Linux."

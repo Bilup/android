@@ -1,0 +1,72 @@
+{
+  "name": "bilup-desktop",
+  "description": "TurboWarp mod with Chinese translations and live collaboration.",
+  "version": "1.1.0",
+  "license": "GPL-3.0",
+  "author": {
+    "email": "support@bilup.org",
+    "name": "Bilup"
+  },
+  "type": "commonjs",
+  "scripts": {
+    "fetch": "node scripts/download-library-files.mjs && node scripts/download-packager.mjs && node scripts/prepare-extensions.mjs && node scripts/download-penguinmod.mjs",
+    "webpack:compile": "webpack",
+    "webpack:watch": "webpack --watch",
+    "webpack:prod": "cross-env NODE_ENV=production webpack",
+    "cap:copy": "npx cap copy",
+    "cap:open": "npx cap open android"
+  },
+  "dependencies": {
+    "semver": "^7.7.3",
+    "node-fetch": "^3.3.2",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/filesystem": "^5.0.0",
+    "@capacitor/dialog": "^5.0.0",
+    "@capacitor/camera": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-react": "^7.13.13",
+    "@turbowarp/extensions": "github:TurboWarp/extensions#master",
+    "jszip": "^3.10.1",
+    "adm-zip": "^0.5.16",
+    "autoprefixer": "^9.8.8",
+    "babel-loader": "^8.4.1",
+    "copy-webpack-plugin": "^6.4.1",
+    "cross-env": "^10.1.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^6.2.0",
+    "postcss": "^8.4.13",
+    "postcss-import": "^14.0.0",
+    "postcss-loader": "^4.2.0",
+    "postcss-simple-vars": "^6.0.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "scratch-gui": "git+https://github.com/Bilup/scratch-gui#develop",
+    "style-loader": "^0.23.0",
+    "url-loader": "^4.1.1",
+    "webpack": "4.47.0",
+    "webpack-cli": "^4.10.0",
+    "@capacitor/cli": "^5.0.0"
+  },
+  "overrides": {
+    "webpack@4.47.0": {
+      "terser-webpack-plugin": "^4.2.3"
+    }
+  },
+  "homepage": "https://desktop.bilup.org/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bilup/desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bilup/desktop/issues",
+    "email": "support@bilup.org"
+  },
+
+  "private": true
+}

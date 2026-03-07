@@ -1,0 +1,8 @@
+{
+    "zh-cn": {
+        "microsoft-store-description": "　　Bilup 是 TurboWarp (MistWarp) 的一个修改版，有实时协作、完整的中文翻译等功能。\n　　Bilup 的开发者与 Scratch 团队没有任何关系。这是一个由社区开发的修改版。\n",
+        "microsoft-store-generic-release-notes": "有关最新发行版说明，请访问{changelog_link}",
+        "microsoft-store-screenshot-addons": "多达 {number_of_addons} 个插件，可用于自定义和增强您的体验。",
+        "microsoft-store-screenshot-packager": "内置的打包工具可将作品转换为 HTML 文件或适用于 Windows、macOS 或 Linux 的应用程序。"
+    }
+}

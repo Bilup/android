@@ -1,0 +1,11 @@
+{
+  "appId": "com.bilup.app",
+  "appName": "Bilup",
+  "webDir": "dist-renderer-webpack",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "Filesystem": {
+      "persistentStoragePath": "Bilup"
+    }
+  }
+}
