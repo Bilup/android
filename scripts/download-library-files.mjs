@@ -11,7 +11,8 @@ import { computeMD5, computeSHA256, persistentFetch } from './lib.mjs';
  * @property {string} sha256
  */
 
-const outDirectory = pathUtil.join(import.meta.dirname, '../dist-library-files');
+const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const outDirectory = pathUtil.join(__dirname, '../dist-library-files');
 
 /**
  * @param {AssetMetadata[]} remainingAssets List of remaining assets. Modified in-place.

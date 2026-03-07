@@ -5,12 +5,13 @@ import { promisify } from 'node:util';
 import zlib from 'node:zlib';
 import Builder from '@turbowarp/extensions/builder';
 
+const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
 const mode = 'desktop';
 const builder = new Builder(mode);
 const build = await builder.build();
 console.log(`Built extensions (mode: ${mode})`);
 
-const outputDirectory = pathUtil.join(import.meta.dirname, '../dist-extensions/');
+const outputDirectory = pathUtil.join(__dirname, '../dist-extensions/');
 fs.rmSync(outputDirectory, {
   recursive: true,
   force: true,

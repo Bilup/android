@@ -2,6 +2,8 @@ import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import { computeSHA256, persistentFetch } from './lib.mjs';
 
+const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+
 const run = async () => {
   const releases = await (await persistentFetch('https://api.github.com/repos/Bilup/packager/releases')).json();
 
@@ -12,7 +14,7 @@ const run = async () => {
   const sha256 = computeSHA256(packagerBuffer);
   console.log(`SHA-256: ${sha256}`);
 
-  fs.writeFileSync(pathUtil.join(import.meta.dirname, 'packager.json'), JSON.stringify({
+  fs.writeFileSync(pathUtil.join(__dirname, 'packager.json'), JSON.stringify({
     src: packagerURL,
     sha256,
   }, null, 2));

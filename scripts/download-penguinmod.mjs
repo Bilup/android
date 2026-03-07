@@ -2,9 +2,10 @@ import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import { persistentFetch } from './lib.mjs';
 
+const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
 const SOURCE = 'https://raw.githubusercontent.com/PenguinMod/PenguinMod-ExtensionsGallery/main/src/lib/extensions.js';
 
-const outputPath = pathUtil.join(import.meta.dirname, '../dist-renderer-webpack/editor/penguinmod/extensions.js');
+const outputPath = pathUtil.join(__dirname, '../dist-renderer-webpack/editor/penguinmod/extensions.js');
 
 const isAlreadyDownloaded = () => {
   try {
