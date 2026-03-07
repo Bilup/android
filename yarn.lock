@@ -877,10 +877,10 @@
   resolved "https://registry.npmmirror.com/@capacitor/android/-/android-5.7.8.tgz#9c18fec3ea6ebba5b34fa48cc7a01dc6aa46e312"
   integrity sha512-ooWclwcuW0dy3YfqgoozkHkjatX8H2fb2/RwRsJa3cew1P1lUXIXri3Dquuy4LdqFAJA7UHcJ19Bl/6UKdsZYA==
 
-"@capacitor/camera@^5.0.0":
-  version "5.0.10"
-  resolved "https://registry.npmmirror.com/@capacitor/camera/-/camera-5.0.10.tgz#b62131108af551f1e71145e9c35306002c32e3d6"
-  integrity sha512-DOLYjiaOdUQk8mtAAgliqVVJaGegC7VzV4Tk3j1rjXyuc8JeX5SJOfow4v0N+NYxyGMsEEtwNnVZ1B7yzxsrVg==
+"@capacitor/camera@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@capacitor/camera/-/camera-8.0.2.tgz#6e9c80ff219461bee08315e0dba4773fa75cdba4"
+  integrity sha512-v2BsKFjJSg0dMl/UO7jEvrAvjChCGrzQG5jx4yN2t8LnC7eFDh0YkSg1t+AMNveSDSKCvAsTk/JUzzr5VAvzmg==
 
 "@capacitor/cli@^8.2.0":
   version "8.2.0"
