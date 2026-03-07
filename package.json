@@ -20,7 +20,7 @@
     "@capacitor/android": "^5.0.0",
     "@capacitor/camera": "^5.0.0",
     "@capacitor/core": "^8.2.0",
-    "@capacitor/dialog": "^5.0.0",
+    "@capacitor/dialog": "^8.0.1",
     "@capacitor/filesystem": "^5.0.0",
     "node-fetch": "^3.3.2",
     "semver": "^7.7.3"

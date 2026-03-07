@@ -912,10 +912,10 @@
   dependencies:
     tslib "^2.1.0"
 
-"@capacitor/dialog@^5.0.0":
-  version "5.0.8"
-  resolved "https://registry.npmmirror.com/@capacitor/dialog/-/dialog-5.0.8.tgz#516a6d08330a1807b50b6422151f5a1e3d0bc927"
-  integrity sha512-uD4ZfRYDBQB8NKUNGJsHV9P0sgBOuHBKYWYquur9kW7EICJieGEI7GTGgeEC+cxttiSv7q35kmuy3gMiGbsxTA==
+"@capacitor/dialog@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/dialog/-/dialog-8.0.1.tgz#3f238a99c7498a06f9215e2b0f2e8b348c619783"
+  integrity sha512-Dq0mZBsd++7CvPvpD2gfbUB44k/zCoe5K9IgYmMImQ4Yphu4/MxLVpFDFAqSya011UBBTGPrUQGVacIW3jDNkw==
 
 "@capacitor/filesystem@^5.0.0":
   version "5.2.2"
