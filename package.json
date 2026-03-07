@@ -17,11 +17,11 @@
     "cap:open": "npx cap open android"
   },
   "dependencies": {
-    "@capacitor/android": "^8.2.0",
-    "@capacitor/camera": "^8.2.0",
-    "@capacitor/core": "^8.2.0",
-    "@capacitor/dialog": "^8.2.0",
-    "@capacitor/filesystem": "^8.2.0",
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/camera": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/dialog": "^7.0.0",
+    "@capacitor/filesystem": "^7.0.0",
     "node-fetch": "^3.3.2",
     "semver": "^7.7.3"
   },
@@ -29,7 +29,7 @@
     "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.12.16",
     "@babel/preset-react": "^7.13.13",
-    "@capacitor/cli": "^8.2.0",
+    "@capacitor/cli": "^7.0.0",
     "@turbowarp/extensions": "github:TurboWarp/extensions#master",
     "adm-zip": "^0.5.16",
     "autoprefixer": "^9.8.8",
