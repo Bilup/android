@@ -4,8 +4,10 @@ import fsPromises from 'node:fs/promises';
 import { promisify } from 'node:util';
 import zlib from 'node:zlib';
 import Builder from '@turbowarp/extensions/builder';
+import { fileURLToPath } from 'node:url';
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 const mode = 'desktop';
 const builder = new Builder(mode);
 const build = await builder.build();

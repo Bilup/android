@@ -3,8 +3,10 @@ import * as pathUtil from 'node:path';
 import {spawnSync} from 'node:child_process';
 import { computeSHA256, persistentFetch } from './lib.mjs';
 import packagerInfo from './packager.json' with { type: 'json' };
+import { fileURLToPath } from 'node:url';
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 const path = pathUtil.join(__dirname, '../src-renderer/packager/standalone.html');
 
 const localPackagerDir = process.env.BILUP_PACKAGER_DIR

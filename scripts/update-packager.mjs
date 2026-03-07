@@ -1,8 +1,10 @@
 import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import { computeSHA256, persistentFetch } from './lib.mjs';
+import { fileURLToPath } from 'node:url';
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 
 const run = async () => {
   const releases = await (await persistentFetch('https://api.github.com/repos/Bilup/packager/releases')).json();

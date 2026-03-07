@@ -1,8 +1,10 @@
 import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import lte from 'semver/functions/lte.js';
+import { fileURLToPath } from 'node:url';
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 
 /**
  * @typedef Release

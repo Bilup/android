@@ -3,6 +3,7 @@ import * as fsPromises from 'node:fs/promises';
 import * as pathUtil from 'node:path';
 import { brotliCompress, brotliDecompress } from 'node:zlib';
 import { computeMD5, computeSHA256, persistentFetch } from './lib.mjs';
+import { fileURLToPath } from 'node:url';
 
 /**
  * @typedef AssetMetadata
@@ -11,7 +12,8 @@ import { computeMD5, computeSHA256, persistentFetch } from './lib.mjs';
  * @property {string} sha256
  */
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 const outDirectory = pathUtil.join(__dirname, '../dist-library-files');
 
 /**

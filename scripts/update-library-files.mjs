@@ -1,6 +1,7 @@
 import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import { computeMD5, computeSHA256, persistentFetch } from './lib.mjs';
+import { fileURLToPath } from 'node:url';
 
 /**
  * @typedef AssetMetadata
@@ -9,7 +10,8 @@ import { computeMD5, computeSHA256, persistentFetch } from './lib.mjs';
  * @property {string} sha256
  */
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 
 /**
  * @returns {string[]} Array of md5exts

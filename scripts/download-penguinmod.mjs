@@ -1,8 +1,10 @@
 import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import { persistentFetch } from './lib.mjs';
+import { fileURLToPath } from 'node:url';
 
-const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = pathUtil.dirname(__filename);
 const SOURCE = 'https://raw.githubusercontent.com/PenguinMod/PenguinMod-ExtensionsGallery/main/src/lib/extensions.js';
 
 const outputPath = pathUtil.join(__dirname, '../dist-renderer-webpack/editor/penguinmod/extensions.js');
