@@ -2,6 +2,8 @@ import * as fs from 'node:fs';
 import * as pathUtil from 'node:path';
 import lte from 'semver/functions/lte.js';
 
+const __dirname = pathUtil.dirname(new URL(import.meta.url).pathname);
+
 /**
  * @typedef Release
  * @property {string} version
@@ -36,7 +38,7 @@ const escapeXmlText = (xml) => xml.replace(/[<>&]/g, c => {
 /** @returns {Release[]} */
 const parse = () => {
   const releaseData = [];
-  const source = fs.readFileSync(pathUtil.join(import.meta.dirname, '../changelog.md'), 'utf-8');
+  const source = fs.readFileSync(pathUtil.join(__dirname, '../changelog.md'), 'utf-8');
   const sections = source.split(/^# /gm);
 
   // Remove the information section at the start
@@ -66,7 +68,7 @@ const parse = () => {
  * @param {Release[]} releases
  */
 const generateHomepage = (releases) => {
-  const path = pathUtil.join(import.meta.dirname, '../docs/index.html');
+  const path = pathUtil.join(__dirname, '../docs/index.html');
   let source = fs.readFileSync(path, 'utf-8');
   const releasedVersion = source.match(/const VERSION *= *["']([\d\w\.\-]+)["']/i)[1];
 
@@ -114,7 +116,7 @@ const generateMetainfo = (releases) => {
     xml += '    </release>\n';
   }
 
-  const path = pathUtil.join(import.meta.dirname, '../linux-files/org.bilup.Bilup.metainfo.xml');
+  const path = pathUtil.join(__dirname, '../linux-files/org.bilup.Bilup.metainfo.xml');
   let source = fs.readFileSync(path, 'utf-8');
   source = source.replace(
     /<releases>[\s\S]*<\/releases>/m,
@@ -136,7 +138,7 @@ const generateJSON = (releases) => {
     });
   }
 
-  const path = pathUtil.join(import.meta.dirname, '../docs/changelog.json');
+  const path = pathUtil.join(__dirname, '../docs/changelog.json');
   fs.writeFileSync(path, JSON.stringify(data, null, 2));
 };
 

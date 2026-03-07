@@ -81,7 +81,7 @@ const startDownloading = async (remainingAssets) => {
 };
 
 const run = async () => {
-  const metadataFile = pathUtil.join(import.meta.dirname, 'library-files.json');
+  const metadataFile = pathUtil.join(__dirname, 'library-files.json');
   const remainingAssets = JSON.parse(fs.readFileSync(metadataFile, 'utf-8'));
 
   await fsPromises.mkdir(outDirectory, {
