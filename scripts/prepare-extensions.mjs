@@ -9,7 +9,8 @@ import { spawn } from 'node:child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathUtil.dirname(__filename);
 
-const outputDirectory = pathUtil.join(__dirname, '../dist-extensions/');
+// For Capacitor, output to dist-renderer-webpack so it's included in the app
+const outputDirectory = pathUtil.join(__dirname, '../dist-renderer-webpack/extensions/');
 
 // Clean up output directory
 fs.rmSync(outputDirectory, {

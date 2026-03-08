@@ -14,7 +14,8 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathUtil.dirname(__filename);
-const outDirectory = pathUtil.join(__dirname, '../dist-library-files');
+// For Capacitor, output to dist-renderer-webpack so it's included in the app
+const outDirectory = pathUtil.join(__dirname, '../dist-renderer-webpack/library-files');
 
 /**
  * @param {AssetMetadata[]} remainingAssets List of remaining assets. Modified in-place.

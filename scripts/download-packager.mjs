@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathUtil.dirname(__filename);
-const path = pathUtil.join(__dirname, '../src-renderer/packager/standalone.html');
+// For Capacitor, output to dist-renderer-webpack so it's included in the app
+const path = pathUtil.join(__dirname, '../dist-renderer-webpack/packager/standalone.html');
 
 const localPackagerDir = process.env.BILUP_PACKAGER_DIR
   ? pathUtil.resolve(process.env.BILUP_PACKAGER_DIR)

@@ -43,14 +43,11 @@
         };
       });
 
-      const PARENT_ORIGIN = 'file://';
+      // For Capacitor, accept messages from any origin (we're in a local WebView)
+      const PARENT_ORIGIN = '*';
 
       window.addEventListener('message', async (e) => {
         try {
-          if (e.origin !== PARENT_ORIGIN) {
-            return;
-          }
-
           const data = e.data;
 
           if (data.storage) {
@@ -78,25 +75,25 @@
             e.source.postMessage({
               type: 'blob',
               key: key
-            }, PARENT_ORIGIN);
+            }, '*');
           } else {
             // We're done
             e.source.postMessage({
               type: 'done'
-            }, PARENT_ORIGIN);
+            }, '*');
           }
         } catch (error) {
           console.error(error);
           e.source.postMessage({
             type: 'error',
             error: `${error}`
-          }, PARENT_ORIGIN);
+          }, '*');
         }
       });
 
       window.parent.postMessage({
         type: 'start'
-      }, PARENT_ORIGIN);
+      }, '*');
     </script>
   </body>
 </html>

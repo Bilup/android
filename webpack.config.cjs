@@ -60,10 +60,59 @@ module.exports = [
     {
         ...base,
         output: {
-            path: path.resolve(__dirname, 'dist-renderer-webpack'),
-            filename: 'index.js'
+            path: path.resolve(__dirname, 'dist-renderer-webpack/editor/gui'),
+            filename: '../../index.js'
         },
         entry: './src-renderer-webpack/editor/gui/index.jsx',
+        module: {
+            rules: [
+                {
+                    test: /\.jsx?$/,
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                },
+                {
+                    test: /\.(svg|png|wav|gif|jpg|mp3|woff2|hex)$/,
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'static/assets/',
+                        publicPath: 'static/assets/',
+                        esModule: false
+                    }
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        {
+                            loader: 'style-loader'
+                        },
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                localIdentName: '[name]_[local]_[hash:base64:5]',
+                                camelCase: true
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        'postcss-import',
+                                        'postcss-simple-vars',
+                                        'autoprefixer'
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         plugins: [
             new DefinePlugin({
                 'process.env.ROOT': '""'
@@ -72,25 +121,58 @@ module.exports = [
                 patterns: [
                     {
                         from: 'src-renderer/index.html',
-                        to: 'index.html'
+                        to: '../../index.html'
                     },
                     {
                         from: 'node_modules/scratch-blocks/media',
-                        to: 'editor/gui/static/blocks-media/default'
+                        to: 'static/blocks-media/default'
                     },
                     {
                         from: 'node_modules/scratch-blocks/media',
-                        to: 'editor/gui/static/blocks-media/high-contrast'
+                        to: 'static/blocks-media/high-contrast'
                     },
                     {
                         from: 'node_modules/scratch-gui/src/lib/themes/blocks/high-contrast-media/blocks-media',
-                        to: 'editor/gui/static/blocks-media/high-contrast',
+                        to: 'static/blocks-media/high-contrast',
                         force: true
                     },
                     {
                         context: 'src-renderer-webpack/editor/gui/',
                         from: '*.html',
-                        to: 'editor/gui/'
+                        to: './'
+                    },
+                    // Copy other static pages for Capacitor
+                    {
+                        from: 'src-renderer/about',
+                        to: '../../about'
+                    },
+                    {
+                        from: 'src-renderer/privacy',
+                        to: '../../privacy'
+                    },
+                    {
+                        from: 'src-renderer/desktop-settings',
+                        to: '../../desktop-settings'
+                    },
+                    {
+                        from: 'src-renderer/packager',
+                        to: '../../packager'
+                    },
+                    {
+                        from: 'src-renderer/migrate',
+                        to: '../../migrate'
+                    },
+                    {
+                        from: 'src-renderer/update',
+                        to: '../../update'
+                    },
+                    {
+                        from: 'src-renderer/security-prompt',
+                        to: '../../security-prompt'
+                    },
+                    {
+                        from: 'src-renderer/file-access',
+                        to: '../../file-access'
                     }
                 ]
             })
