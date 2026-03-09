@@ -198,13 +198,6 @@ const EditorPreload = {
     localStorage.setItem('bilup:project-changed', changed ? 'true' : 'false');
   },
 
-  // Open new window
-  openNewWindow: async () => {
-    // Capacitor doesn't support multiple windows
-    // Reload the current page instead
-    window.location.reload();
-  },
-
   // Open addon settings
   openAddonSettings: async (search) => {
     // Navigate to addons page

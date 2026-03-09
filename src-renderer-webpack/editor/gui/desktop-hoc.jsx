@@ -39,11 +39,6 @@ const handleClickAddonSettings = (search) => {
   window.location.href = './addons/addons.html';
 };
 
-const handleClickNewWindow = () => {
-  // For Capacitor, we'll just reload the app
-  window.location.reload();
-};
-
 const handleClickPackager = () => {
   // For Capacitor, we'll just open the packager page
   window.location.href = '../../packager/migrate-helper.html';
@@ -260,7 +255,6 @@ const DesktopHOC = function (WrappedComponent) {
           projectTitle={this.state.title}
           onUpdateProjectTitle={this.handleUpdateProjectTitle}
           onClickAddonSettings={handleClickAddonSettings}
-          onClickNewWindow={handleClickNewWindow}
           onClickPackager={handleClickPackager}
           onClickAbout={[
             {
