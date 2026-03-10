@@ -61,6 +61,13 @@
         document.documentElement.lang = locale;
       </script>
 
+      <button class="back-button" style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer;">返回</button>
+      <script>
+        document.querySelector('.back-button').addEventListener('click', () => {
+          window.history.back();
+        });
+      </script>
+
       <h1 class="title"></h1>
       <script>document.querySelector('.title').textContent = strings['desktop-settings.title'];</script>
 
@@ -212,50 +219,7 @@
         updateLists();
       </script>
 
-      <label>
-        <input type="checkbox" class="hardware-acceleration-checkbox" autocomplete="off">
-        <span class="hardware-acceleration-label"></span>
-      </label>
-      <div class="warning hardware-acceleration-warning"></div>
-      <script>
-        const hardwareAcceleration = document.querySelector('.hardware-acceleration-checkbox');
-        const hardwareAccelerationWarning = document.querySelector('.hardware-acceleration-warning');
-        hardwareAcceleration.onchange = () => {
-          DesktopSettingsPreload.setHardwareAcceleration(hardwareAcceleration.checked);
-          hardwareAccelerationWarning.hidden = hardwareAcceleration.checked;
-        };
-        hardwareAcceleration.checked = settings.hardwareAcceleration;
-        hardwareAccelerationWarning.hidden = hardwareAcceleration.checked;
 
-        const chromiumMajorVersion = +(navigator.userAgent.match(/Chrome\/(\d+)/)[1]);
-        document.querySelector('.hardware-acceleration-label').textContent = (
-          // Chromium 139 no longer does software fallback for WebGL by default
-          // https://chromestatus.com/feature/5166674414927872
-          chromiumMajorVersion >= 139 ?
-          strings['desktop-settings.hardware-acceleration'] :
-          strings['desktop-settings.hardware-acceleration-when-available']
-        );
-        hardwareAccelerationWarning.textContent = strings['desktop-settings.hardware-acceleration-disabled'];
-      </script>
-
-      <label>
-        <input type="checkbox" class="background-throttling-checkbox" autocomplete="off">
-        <span class="background-throttling-label"></span>
-      </label>
-      <div class="warning background-throttling-warning"></div>
-      <script>
-        const backgroundThrottling = document.querySelector('.background-throttling-checkbox');
-        const backgroundThrottlingWarning = document.querySelector('.background-throttling-warning');
-        backgroundThrottling.onchange = () => {
-          DesktopSettingsPreload.setBackgroundThrottling(backgroundThrottling.checked);
-          backgroundThrottlingWarning.hidden = backgroundThrottling.checked;
-        };
-        backgroundThrottling.checked = settings.backgroundThrottling;
-        backgroundThrottlingWarning.hidden = backgroundThrottling.checked;
-
-        document.querySelector('.background-throttling-label').textContent = strings['desktop-settings.background-throttling'];
-        backgroundThrottlingWarning.textContent = strings['desktop-settings.background-throttling-disabled'];
-      </script>
 
       <label>
         <input type="checkbox" class="bypass-cors-checkbox" autocomplete="off">
@@ -276,31 +240,7 @@
         bypassCORSWarning.textContent = strings['desktop-settings.bypass-cors-enabled'];
       </script>
 
-      <label>
-        <input type="checkbox" class="spellchecker-checkbox" autocomplete="off">
-        <span class="spellchecker-label"></span>
-      </label>
-      <script>
-        const spellchecker = document.querySelector('.spellchecker-checkbox');
-        spellchecker.onchange = () => {
-          DesktopSettingsPreload.setSpellchecker(spellchecker.checked);
-        };
-        spellchecker.checked = settings.spellchecker;
-        document.querySelector('.spellchecker-label').textContent = strings['desktop-settings.spellchecker'];
-      </script>
 
-      <label>
-        <input type="checkbox" class="exit-fullscreen-on-escape-checkbox" autocomplete="off">
-        <span class="exit-fullscreen-on-escape-label"></span>
-      </label>
-      <script>
-        const exitFullscreenOnEscape = document.querySelector('.exit-fullscreen-on-escape-checkbox');
-        exitFullscreenOnEscape.onchange = () => {
-          DesktopSettingsPreload.setExitFullscreenOnEscape(exitFullscreenOnEscape.checked);
-        };
-        exitFullscreenOnEscape.checked = settings.exitFullscreenOnEscape;
-        document.querySelector('.exit-fullscreen-on-escape-label').textContent = strings['desktop-settings.exit-fullscreen-on-escape'];
-      </script>
 
       <button class="open-user-data"></button>
       <script>

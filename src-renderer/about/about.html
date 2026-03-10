@@ -29,6 +29,13 @@
   </head>
   <body>
     <main>
+      <button class="back-button" style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer;">返回</button>
+      <script>
+        document.querySelector('.back-button').addEventListener('click', () => {
+          window.history.back();
+        });
+      </script>
+
       <h1>Bilup Android <span class="version">1.1.0</span></h1>
       <p class="more-version">(Debug info: Platform Android, Distribution Capacitor)</p>
       <p>Bilup is a better offline editor for Scratch 3. Learn more at <a href="https://www.bilup.org/">https://www.bilup.org/</a>.</p>

@@ -86,6 +86,13 @@
         }
       </script>
 
+      <button class="back-button" style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer;">返回</button>
+      <script>
+        document.querySelector('.back-button').addEventListener('click', () => {
+          window.history.back();
+        });
+      </script>
+
       <h1 class="normal-title if-normal"></h1>
       <h1 class="security-title if-security"></h1>
       <script>
