@@ -284,4 +284,146 @@ const EditorPreload = {
 // Make it globally available
 window.EditorPreload = EditorPreload;
 
+// CORS bypass implementation
+const isCorsBypassEnabled = () => {
+  return localStorage.getItem('bilup:bypassCORS') === 'true';
+};
+
+// Override XMLHttpRequest to bypass CORS
+const originalXHROpen = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(method, url, ...args) {
+  if (isCorsBypassEnabled() && url.startsWith('http')) {
+    // For CORS bypass, we'll use a proxy approach
+    this._originalUrl = url;
+    // We'll let the request go through normally, but we'll handle it in send
+  }
+  return originalXHROpen.call(this, method, url, ...args);
+};
+
+// Override fetch to bypass CORS
+const originalFetch = window.fetch;
+window.fetch = async function(url, options = {}) {
+  if (isCorsBypassEnabled() && typeof url === 'string' && url.startsWith('http')) {
+    // For CORS bypass, we'll add CORS headers to the request
+    const headers = new Headers(options.headers || {});
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', '*');
+    
+    return originalFetch(url, {
+      ...options,
+      headers,
+      credentials: 'include'
+    });
+  }
+  return originalFetch(url, options);
+};
+
+// Update checker implementation
+const checkForUpdates = async () => {
+  try {
+    // Get update checker setting
+    const updateChecker = localStorage.getItem('bilup:update-checker') || 'stable';
+    if (updateChecker === 'never') {
+      return;
+    }
+    
+    // Get current version from package.json or localStorage
+    let currentVersion = localStorage.getItem('bilup:current-version');
+    if (!currentVersion) {
+      // Try to get version from package.json
+      try {
+        const response = await fetch('package.json');
+        const packageJson = await response.json();
+        currentVersion = packageJson.version || '1.0.0';
+        localStorage.setItem('bilup:current-version', currentVersion);
+      } catch (e) {
+        currentVersion = '1.0.0';
+        localStorage.setItem('bilup:current-version', currentVersion);
+      }
+    }
+    
+    // Check if we should ignore this update
+    const ignoredUpdate = localStorage.getItem('bilup:ignored-update');
+    const ignoredUpdateUntil = parseInt(localStorage.getItem('bilup:ignored-update-until') || '0') * 1000;
+    const now = Date.now();
+    
+    // Fetch version info
+    const response = await fetch('https://desktop.bilup.org/version.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    
+    const json = await response.json();
+    const latestStable = json.latest;
+    const latestUnstable = json.latest_unstable;
+    const oldestSafe = json.oldest_safe;
+    
+    // Compare versions
+    const compareVersions = (a, b) => {
+      const partsA = a.split('-')[0].split('.');
+      const partsB = b.split('-')[0].split('.');
+      const expectedLength = 3;
+      for (let i = 0; i < expectedLength; i++) {
+        const itemA = +partsA[i];
+        const itemB = +partsB[i];
+        if (itemA > itemB) {
+          return 1; // A is newer
+        } else if (itemA < itemB) {
+          return 2; // B is newer
+        }
+      }
+      
+      const prereleaseA = a.split('-')[1];
+      const prereleaseB = b.split('-')[1];
+      if (prereleaseA === prereleaseB) {
+        return 0;
+      } else if (prereleaseA && !prereleaseB) {
+        return 2; // B is newer
+      } else if (prereleaseB && !prereleaseA) {
+        return 1; // A is newer
+      } else if (prereleaseA > prereleaseB) {
+        return 1; // A is newer
+      } else {
+        return 2; // B is newer
+      }
+    };
+    
+    // Security updates can not be ignored
+    if (compareVersions(currentVersion, oldestSafe) === 2) {
+      // Security update available
+      localStorage.setItem('bilup:latest-version', latestStable);
+      localStorage.setItem('bilup:is-security-update', 'true');
+      // Open update window
+      window.open('../../update/update.html', '_blank', 'width=600,height=500');
+      return;
+    }
+    
+    if (updateChecker === 'security') {
+      // Nothing further to check
+      return;
+    }
+    
+    const latest = updateChecker === 'unstable' ? latestUnstable : latestStable;
+    
+    if (ignoredUpdate === latest && now < ignoredUpdateUntil) {
+      // This update was ignored
+      return;
+    }
+    
+    if (compareVersions(currentVersion, latest) === 2) {
+      // Update available
+      localStorage.setItem('bilup:latest-version', latest);
+      localStorage.setItem('bilup:is-security-update', 'false');
+      // Open update window
+      window.open('../../update/update.html', '_blank', 'width=600,height=500');
+    }
+  } catch (error) {
+    console.error('Error checking for updates:', error);
+  }
+};
+
+// Check for updates when the app starts
+setTimeout(checkForUpdates, 5000); // Wait 5 seconds to avoid slowing down startup
+
 export default EditorPreload;

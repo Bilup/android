@@ -1,0 +1,130 @@
+{
+  "prompt.ok": {
+    "string": "确定",
+    "developer_comment": "确定按钮"
+  },
+  "prompt.cancel": {
+    "string": "取消",
+    "developer_comment": "取消按钮"
+  },
+  "in-app-about.desktop-settings": {
+    "string": "桌面设置",
+    "developer_comment": "桌面设置菜单项"
+  },
+  "in-app-about.privacy": {
+    "string": "隐私",
+    "developer_comment": "隐私菜单项"
+  },
+  "in-app-about.about": {
+    "string": "关于",
+    "developer_comment": "关于菜单项"
+  },
+  "in-app-about.source-code": {
+    "string": "源代码",
+    "developer_comment": "源代码菜单项"
+  },
+  "desktop-settings.title": {
+    "string": "桌面设置",
+    "developer_comment": "桌面设置窗口标题"
+  },
+  "desktop-settings.update-checker": {
+    "string": "更新检查",
+    "developer_comment": "更新检查设置标签"
+  },
+  "desktop-settings.notify-unstable": {
+    "string": "不稳定版本",
+    "developer_comment": "接收不稳定更新的选项"
+  },
+  "desktop-settings.notify-stable": {
+    "string": "稳定版本",
+    "developer_comment": "接收稳定更新的选项"
+  },
+  "desktop-settings.notify-security": {
+    "string": "安全更新",
+    "developer_comment": "接收安全更新的选项"
+  },
+  "desktop-settings.notify-never": {
+    "string": "从不检查",
+    "developer_comment": "从不检查更新的选项"
+  },
+  "desktop-settings.disabled-updates": {
+    "string": "不建议关闭更新检查，因为这样你会无法接收安全更新。",
+    "developer_comment": "关于禁用更新的警告"
+  },
+  "desktop-settings.update-checker-not-allowed": {
+    "string": "更新检查不可用",
+    "developer_comment": "更新检查不可用时的消息"
+  },
+  "desktop-settings.microphone": {
+    "string": "麦克风",
+    "developer_comment": "麦克风设置标签"
+  },
+  "desktop-settings.camera": {
+    "string": "摄像头",
+    "developer_comment": "摄像头设置标签"
+  },
+  "desktop-settings.loading": {
+    "string": "加载中...",
+    "developer_comment": "加载消息"
+  },
+  "desktop-settings.no-devices": {
+    "string": "无设备",
+    "developer_comment": "未找到设备时的消息"
+  },
+  "desktop-settings.editor-must-be-open": {
+    "string": "错误：编辑器必须打开才能配置媒体设备",
+    "developer_comment": "编辑器未打开时的错误消息"
+  },
+  "desktop-settings.error": {
+    "string": "错误：{error}",
+    "developer_comment": "错误消息模板"
+  },
+  "desktop-settings.media-devices-changed": {
+    "string": "你需要重新启动应用程序以应用麦克风或摄像头更改。",
+    "developer_comment": "关于重启以应用设备更改的消息"
+  },
+  "desktop-settings.hardware-acceleration": {
+    "string": "硬件加速（重启后生效）",
+    "developer_comment": "硬件加速设置标签"
+  },
+  "desktop-settings.hardware-acceleration-when-available": {
+    "string": "硬件加速（如有可用）（重启后生效）",
+    "developer_comment": "可用时硬件加速设置标签"
+  },
+  "desktop-settings.hardware-acceleration-disabled": {
+    "string": "禁用硬件加速会显著降低性能。某些项目的运行速度可能下降100倍以上，因为所有渲染工作都将转由CPU承担。只有当硬件加速导致程序崩溃时，才应将此作为最后的手段。",
+    "developer_comment": "关于禁用硬件加速的警告"
+  },
+  "desktop-settings.background-throttling": {
+    "string": "后台节流",
+    "developer_comment": "后台节流设置标签"
+  },
+  "desktop-settings.background-throttling-disabled": {
+    "string": "允许隐藏窗口保持活跃会导致 CPU 使用率增加并缩短电池寿命。",
+    "developer_comment": "关于禁用后台节流的警告"
+  },
+  "desktop-settings.bypass-cors": {
+    "string": "允许扩展访问任何网站",
+    "developer_comment": "绕过CORS设置标签"
+  },
+  "desktop-settings.bypass-cors-enabled": {
+    "string": "这将禁用多项用来保护网络安全的功能。恶意作品或扩展将可以访问您网络上的任何网站或设备。",
+    "developer_comment": "关于启用CORS绕过的警告"
+  },
+  "desktop-settings.spellchecker": {
+    "string": "拼写检查",
+    "developer_comment": "拼写检查设置标签"
+  },
+  "desktop-settings.exit-fullscreen-on-escape": {
+    "string": "当按下 Esc 键时，退出 F11 全屏模式（不是编辑器全屏）",
+    "developer_comment": "按ESC退出全屏设置标签"
+  },
+  "desktop-settings.more-information": {
+    "string": "（更多信息）",
+    "developer_comment": "更多信息链接文本"
+  },
+  "desktop-settings.open-user-data": {
+    "string": "打开用户数据",
+    "developer_comment": "打开用户数据按钮文本"
+  }
+}

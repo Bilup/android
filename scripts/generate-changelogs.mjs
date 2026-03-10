@@ -99,6 +99,12 @@ const generateHomepage = (releases) => {
  * @param {Release[]} releases
  */
 const generateMetainfo = (releases) => {
+  const path = pathUtil.join(__dirname, '../linux-files/org.bilup.Bilup.metainfo.xml');
+  if (!fs.existsSync(path)) {
+    console.log('Metainfo file not found, skipping...');
+    return;
+  }
+  
   let xml = '';
   for (const {version, date, notes} of releases) {
     xml += `    <release version="${version}" date="${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}">\n`;
@@ -118,7 +124,6 @@ const generateMetainfo = (releases) => {
     xml += '    </release>\n';
   }
 
-  const path = pathUtil.join(__dirname, '../linux-files/org.bilup.Bilup.metainfo.xml');
   let source = fs.readFileSync(path, 'utf-8');
   source = source.replace(
     /<releases>[\s\S]*<\/releases>/m,
@@ -144,7 +149,36 @@ const generateJSON = (releases) => {
   fs.writeFileSync(path, JSON.stringify(data, null, 2));
 };
 
+/**
+ * @param {Release[]} releases
+ */
+const updateAboutHTML = (releases) => {
+  // Get the latest version
+  const latestVersion = releases[0].version;
+  
+  // Update src-renderer/about/about.html
+  const srcPath = pathUtil.join(__dirname, '../src-renderer/about/about.html');
+  let source = fs.readFileSync(srcPath, 'utf-8');
+  source = source.replace(
+    /<span class="version">[\d\w\.\-]+<\/span>/,
+    `<span class="version">${latestVersion}</span>`
+  );
+  fs.writeFileSync(srcPath, source);
+  
+  // Update dist-renderer-webpack/about/about.html
+  const distPath = pathUtil.join(__dirname, '../dist-renderer-webpack/about/about.html');
+  if (fs.existsSync(distPath)) {
+    let distSource = fs.readFileSync(distPath, 'utf-8');
+    distSource = distSource.replace(
+      /<span class="version">[\d\w\.\-]+<\/span>/,
+      `<span class="version">${latestVersion}</span>`
+    );
+    fs.writeFileSync(distPath, distSource);
+  }
+};
+
 const releases = parse();
 generateHomepage(releases);
 generateMetainfo(releases);
 generateJSON(releases);
+updateAboutHTML(releases);

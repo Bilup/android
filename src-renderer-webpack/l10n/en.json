@@ -1,0 +1,130 @@
+{
+  "prompt.ok": {
+    "string": "OK",
+    "developer_comment": "OK button in prompts"
+  },
+  "prompt.cancel": {
+    "string": "Cancel",
+    "developer_comment": "Cancel button in prompts"
+  },
+  "in-app-about.desktop-settings": {
+    "string": "Desktop Settings",
+    "developer_comment": "Desktop settings menu item"
+  },
+  "in-app-about.privacy": {
+    "string": "Privacy",
+    "developer_comment": "Privacy menu item"
+  },
+  "in-app-about.about": {
+    "string": "About",
+    "developer_comment": "About menu item"
+  },
+  "in-app-about.source-code": {
+    "string": "Source Code",
+    "developer_comment": "Source code menu item"
+  },
+  "desktop-settings.title": {
+    "string": "Desktop Settings",
+    "developer_comment": "Title of desktop settings window"
+  },
+  "desktop-settings.update-checker": {
+    "string": "Update Checker",
+    "developer_comment": "Update checker setting label"
+  },
+  "desktop-settings.notify-unstable": {
+    "string": "Unstable versions",
+    "developer_comment": "Option to receive unstable updates"
+  },
+  "desktop-settings.notify-stable": {
+    "string": "Stable versions",
+    "developer_comment": "Option to receive stable updates"
+  },
+  "desktop-settings.notify-security": {
+    "string": "Security updates",
+    "developer_comment": "Option to receive security updates"
+  },
+  "desktop-settings.notify-never": {
+    "string": "Never check",
+    "developer_comment": "Option to never check for updates"
+  },
+  "desktop-settings.disabled-updates": {
+    "string": "Update checking is not recommended as you will miss security updates.",
+    "developer_comment": "Warning about disabled updates"
+  },
+  "desktop-settings.update-checker-not-allowed": {
+    "string": "Update checking is not available",
+    "developer_comment": "Message when update checker is not available"
+  },
+  "desktop-settings.microphone": {
+    "string": "Microphone",
+    "developer_comment": "Microphone setting label"
+  },
+  "desktop-settings.camera": {
+    "string": "Camera",
+    "developer_comment": "Camera setting label"
+  },
+  "desktop-settings.loading": {
+    "string": "Loading...",
+    "developer_comment": "Loading message"
+  },
+  "desktop-settings.no-devices": {
+    "string": "No devices",
+    "developer_comment": "Message when no devices are found"
+  },
+  "desktop-settings.editor-must-be-open": {
+    "string": "Error: Editor must be open to configure media devices",
+    "developer_comment": "Error message when editor is not open"
+  },
+  "desktop-settings.error": {
+    "string": "Error: {error}",
+    "developer_comment": "Error message template"
+  },
+  "desktop-settings.media-devices-changed": {
+    "string": "You must restart the application for microphone or camera changes to take effect.",
+    "developer_comment": "Message about restarting for device changes"
+  },
+  "desktop-settings.hardware-acceleration": {
+    "string": "Hardware acceleration (requires restart)",
+    "developer_comment": "Hardware acceleration setting label"
+  },
+  "desktop-settings.hardware-acceleration-when-available": {
+    "string": "Hardware acceleration when available (requires restart)",
+    "developer_comment": "Hardware acceleration when available setting label"
+  },
+  "desktop-settings.hardware-acceleration-disabled": {
+    "string": "Disabling hardware acceleration significantly reduces performance. Some projects may run over 100x slower because all rendering work will be done by the CPU. Only use this as a last resort if hardware acceleration causes crashes.",
+    "developer_comment": "Warning about disabled hardware acceleration"
+  },
+  "desktop-settings.background-throttling": {
+    "string": "Background throttling",
+    "developer_comment": "Background throttling setting label"
+  },
+  "desktop-settings.background-throttling-disabled": {
+    "string": "Allowing hidden windows to stay active increases CPU usage and reduces battery life.",
+    "developer_comment": "Warning about disabled background throttling"
+  },
+  "desktop-settings.bypass-cors": {
+    "string": "Allow extensions to access any website",
+    "developer_comment": "Bypass CORS setting label"
+  },
+  "desktop-settings.bypass-cors-enabled": {
+    "string": "This disables many security features designed to protect you. Malicious projects or extensions will be able to access any website or device on your network.",
+    "developer_comment": "Warning about enabled CORS bypass"
+  },
+  "desktop-settings.spellchecker": {
+    "string": "Spellchecker",
+    "developer_comment": "Spellchecker setting label"
+  },
+  "desktop-settings.exit-fullscreen-on-escape": {
+    "string": "Exit F11 fullscreen mode when Esc is pressed (not editor fullscreen)",
+    "developer_comment": "Exit fullscreen on escape setting label"
+  },
+  "desktop-settings.more-information": {
+    "string": "(More information)",
+    "developer_comment": "More information link text"
+  },
+  "desktop-settings.open-user-data": {
+    "string": "Open User Data",
+    "developer_comment": "Open user data button text"
+  }
+}
