@@ -81,8 +81,8 @@ const UpdatePreload = {
     params.set('to', info.latestVersion);
     window.open(`https://desktop.bilup.org/update_available?${params}`, '_blank');
     
-    // Close the update window
-    window.close();
+    // Return to previous page instead of closing window
+    window.history.back();
   },
   
   // Ignore update
@@ -106,8 +106,8 @@ const UpdatePreload = {
     localStorage.setItem('bilup:ignored-update', info.latestVersion);
     localStorage.setItem('bilup:ignored-update-until', Math.floor(until.getTime() / 1000).toString());
     
-    // Close the update window
-    window.close();
+    // Return to previous page instead of closing window
+    window.history.back();
   }
 };
 
