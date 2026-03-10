@@ -61,11 +61,10 @@
         document.documentElement.lang = locale;
       </script>
 
-      <button class="back-button" style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer;">返回</button>
+      <button class="back-button" onclick="window.history.back()">返回</button>
       <script>
-        document.querySelector('.back-button').addEventListener('click', () => {
-          window.history.back();
-        });
+        // 确保按钮在文档开头
+        document.body.insertBefore(document.querySelector('.back-button'), document.body.firstChild);
       </script>
 
       <h1 class="title"></h1>
@@ -139,7 +138,7 @@
             DesktopSettingsPreload.setCamera(selectedCameraSelect.value);
             mediaDeviceWarning.hidden = false;
           };
-          selectedCameraSelect.value = settings.microphone;
+          selectedCameraSelect.value = settings.camera;
 
           document.querySelector('.selected-camera-label').textContent = strings['desktop-settings.camera'];
           selectedCameraSelect.firstChild.textContent = strings['desktop-settings.loading'];

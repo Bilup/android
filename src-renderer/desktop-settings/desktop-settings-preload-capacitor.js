@@ -99,11 +99,35 @@ const DesktopSettingsPreload = {
   // Enumerate media devices (supported in Capacitor)
   enumerateMediaDevices: async () => {
     try {
-      // Request media device permissions
-      await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+      // First try to enumerate devices without explicit permission request
+      // This might return limited information, but it's better than nothing
+      let devices = await navigator.mediaDevices.enumerateDevices();
       
-      // Enumerate devices
-      const devices = await navigator.mediaDevices.enumerateDevices();
+      // If we don't get any videoinput devices, try requesting permission
+      if (!devices.some(device => device.kind === 'videoinput')) {
+        try {
+          // Request media device permissions
+          await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
+          // Re-enumerate devices after permission is granted
+          devices = await navigator.mediaDevices.enumerateDevices();
+        } catch (permissionError) {
+          console.warn('Permission denied for camera:', permissionError);
+          // Continue with whatever devices we have
+        }
+      }
+      
+      // If we don't get any audioinput devices, try requesting permission
+      if (!devices.some(device => device.kind === 'audioinput')) {
+        try {
+          // Request media device permissions
+          await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+          // Re-enumerate devices after permission is granted
+          devices = await navigator.mediaDevices.enumerateDevices();
+        } catch (permissionError) {
+          console.warn('Permission denied for microphone:', permissionError);
+          // Continue with whatever devices we have
+        }
+      }
       
       // Filter out audio and video input devices
       return devices.filter(device => 

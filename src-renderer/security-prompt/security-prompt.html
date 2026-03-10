@@ -60,11 +60,10 @@
 
   <body>
     <main>
-      <button class="back-button" style="position: absolute; top: 10px; right: 10px; padding: 8px 12px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">返回</button>
+      <button class="back-button" onclick="window.history.back()">返回</button>
       <script>
-        document.querySelector('.back-button').addEventListener('click', () => {
-          window.history.back();
-        });
+        // 确保按钮在文档开头
+        document.body.insertBefore(document.querySelector('.back-button'), document.body.firstChild);
       </script>
 
       <p data-type="read-clipboard" data-l10n="security-prompt.read-clipboard1"></p>

@@ -37,11 +37,10 @@
         document.body.setAttribute('update-checker', 'false');
       </script>
 
-      <button class="back-button" style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #75C1C4; color: white; border: none; border-radius: 5px; cursor: pointer;">返回</button>
+      <button class="back-button" onclick="window.history.back()">返回</button>
       <script>
-        document.querySelector('.back-button').addEventListener('click', () => {
-          window.history.back();
-        });
+        // 确保按钮在文档开头
+        document.body.insertBefore(document.querySelector('.back-button'), document.body.firstChild);
       </script>
 
       <h1>Privacy Policy</h1>
