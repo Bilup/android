@@ -1432,7 +1432,8 @@
 
 "@turbowarp/extensions@github:TurboWarp/extensions#master":
   version "0.0.1"
-  resolved "https://codeload.github.com/TurboWarp/extensions/tar.gz/3b5c03d8dea0a4cf19414e4d5fe27a9298de589f"
+  uid cd568d24e76b1be98277cb26b593cd9b59e8fc12
+  resolved "https://codeload.github.com/TurboWarp/extensions/tar.gz/cd568d24e76b1be98277cb26b593cd9b59e8fc12"
   dependencies:
     "@turbowarp/json" "^0.1.2"
     "@turbowarp/scratchblocks" "^3.6.7"
